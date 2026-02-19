@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadanlich - 30 Geschichten für den Ramadan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #5fb8c2 0%, #d4a96a 30%, #c9956b 50%, #e8cfa0 80%, #f2e4c9 100%);
+            min-height: 100vh;
+            color: #3e2713;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.85;
+        }
+
+        .logo {
+            max-width: 280px;
+            width: 80%;
+            margin-bottom: 16px;
+            border-radius: 12px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .story-card {
+            background: rgba(242, 228, 201, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(193, 155, 100, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 2px 8px rgba(62, 39, 19, 0.1);
+        }
+
+        .story-card:hover {
+            background: rgba(242, 228, 201, 0.85);
+            transform: translateY(-2px);
+        }
+
+        .story-info {
+            flex: 1;
+        }
+
+        .story-day {
+            font-size: 0.85em;
+            color: #b07830;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .story-title {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .download-btn {
+            background: #c9956b;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.4em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex-shrink: 0;
+            margin-left: 16px;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #d4a96a;
+        }
+
+        .story-card.locked {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .story-card.locked .download-btn {
+            background: rgba(193, 155, 100, 0.25);
+            color: rgba(62, 39, 19, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            opacity: 0.5;
+            font-size: 0.85em;
+            color: #3e2713;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Erziehung nach dem prophetischen Vorbild" class="logo">
+        <h1>Ramadanlich</h1>
+        <p>30 Geschichten aus der Stadt Quds</p>
+    </header>
+
+    <div class="container" id="stories">
+    </div>
+
+    <footer>
+        <p>Mit Liebe gemacht für unsere Kinder</p>
+    </footer>
+
+    <script>
+        const geschichten = [
+            { tag: 1,  titel: "Die verlorene Münze",              datei: "Tag_01_Die_verlorene_Muenze.pdf" },
+            { tag: 2,  titel: "Adams großer Moment",              datei: null },
+            { tag: 3,  titel: "Das geteilte Brot",                datei: null },
+            { tag: 4,  titel: "Rahmas Geduld",                    datei: null },
+            { tag: 5,  titel: "Die zerbrochene Vase",             datei: null },
+            { tag: 6,  titel: "Der kranke Nachbar",               datei: null },
+            { tag: 7,  titel: "Das Versprechen",                  datei: null },
+            { tag: 8,  titel: "Die schwere Last",                 datei: null },
+            { tag: 9,  titel: "Der Basar-Stand",                  datei: null },
+            { tag: 10, titel: "Die verzogene Linie",              datei: null },
+            { tag: 11, titel: "Der steile Weg",                   datei: null },
+            { tag: 12, titel: "Die fremde Familie",               datei: null },
+            { tag: 13, titel: "Das verloren gegangene Spielzeug", datei: null },
+            { tag: 14, titel: "Die dunkle Gasse",                 datei: null },
+            { tag: 15, titel: "Halbzeit im Ramadan",              datei: null },
+            { tag: 16, titel: "Der Streit im Hof",                datei: null },
+            { tag: 17, titel: "Die hungrige Katze",               datei: null },
+            { tag: 18, titel: "Der schwierige Auftrag",           datei: null },
+            { tag: 19, titel: "Die letzte Dattel",                datei: null },
+            { tag: 20, titel: "Der alte Lehrer",                  datei: null },
+            { tag: 21, titel: "Die Laylat al-Qadr Nacht",         datei: null },
+            { tag: 22, titel: "Der müde Adam",                    datei: null },
+            { tag: 23, titel: "Das Familientreffen",              datei: null },
+            { tag: 24, titel: "Der lange Fußmarsch",              datei: null },
+            { tag: 25, titel: "Die schwere Entscheidung",         datei: null },
+            { tag: 26, titel: "Der Unfall am Brunnen",            datei: null },
+            { tag: 27, titel: "Die wertvollste Nacht",            datei: null },
+            { tag: 28, titel: "Die falsche Anschuldigung",        datei: null },
+            { tag: 29, titel: "Die Vorbereitung fürs Fest",       datei: null },
+            { tag: 30, titel: "Das Ramadan-Fest",                 datei: null }
+        ];
+
+        const container = document.getElementById('stories');
+
+        geschichten.forEach(g => {
+            const card = document.createElement('div');
+            const verfuegbar = g.datei !== null;
+
+            card.className = 'story-card' + (verfuegbar ? '' : ' locked');
+
+            card.innerHTML = `
+                <div class="story-info">
+                    <div class="story-day">Tag ${g.tag}</div>
+                    <div class="story-title">${g.titel}</div>
+                </div>
+                ${verfuegbar
+                    ? `<a href="pdfs/${g.datei}" download class="download-btn" title="PDF herunterladen">&#11015;</a>`
+                    : `<span class="download-btn">&#128274;</span>`
+                }
+            `;
+
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
