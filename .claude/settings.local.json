@@ -5,7 +5,9 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(python:*)",
-      "Bash(pip show:*)"
+      "Bash(pip show:*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
